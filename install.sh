@@ -23,6 +23,7 @@ if [ ! -f "/opt/homebrew/bin/brew" ]; then
   ZPROFILE_PATH="/Users/$USER/.zprofile"
   INSTALL_HOMEBREW='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
   confirmAction "Install Homebrew?" "$INSTALL_HOMEBREW"
+  # TODO: must move this to confirmAction!
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$ZPROFILE_PATH"
   . "$ZPROFILE_PATH"
 fi
@@ -108,5 +109,25 @@ if [ ! -d "/Applications/Flux.app" ]; then
   INSTALL_FLUX="brew install --cask flux"
   confirmAction "Install f.lux?" "$INSTALL_FLUX"
 fi
+
+# Install Telegram
+if [ ! -d "/Applications/Telegram.app" ]; then
+  INSTALL_TELEGRAM="brew install --cask telegram"
+  confirmAction "Install Telegram?" "$INSTALL_TELEGRAM"
+fi
+
+# Install Slack
+if [ ! -d "/Applications/Slack.app" ]; then
+  INSTALL_SLACK="brew install --cask slack"
+  confirmAction "Install Slack?" "$INSTALL_SLACK"
+fi
+
+# Install Zoom
+if [ ! -d "/Applications/zoom.us.app" ]; then
+  INSTALL_ZOOM="brew install --cask zoom"
+  confirmAction "Install Zoom?" "$INSTALL_ZOOM"
+fi
+
+# Install heroku-cli
 
 echo "==> Setup finished!"
