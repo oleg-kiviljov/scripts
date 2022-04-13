@@ -2,6 +2,8 @@
 
 set -e
 
+ZSHRC_PATH="$HOME/.zshrc"
+
 confirmAction () {
   local ASK="$1"
   local ACTION="$2"

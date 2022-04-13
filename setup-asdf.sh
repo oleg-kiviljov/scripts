@@ -3,7 +3,6 @@
 set -e
 
 THIS_DIR="$(dirname "$(realpath "$0")")"
-ZSHRC_PATH="$HOME/.zshrc"
 ASDF_DIR="$HOME/.asdf"
 ASDF_PLUGINS_DIR="$ASDF_DIR/plugins"
 ASDF_INSTALLS_DIR="$ASDF_DIR/installs"
@@ -13,6 +12,7 @@ ASDF_SH="/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 echo "==> Asdf setup started."
 
+# TODO: must automatically reload shell after adding to $PATH!
 if ! grep -q "$ASDF_SH" "$ZSHRC_PATH"; then
   SETUP_ASDF="echo '# Add asdf plugins to \$PATH' >> $ZSHRC_PATH && echo . $ASDF_SH >> $ZSHRC_PATH"
   confirmAction "Add asdf to \$PATH?" "$SETUP_ASDF"
