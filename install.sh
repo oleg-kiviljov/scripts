@@ -2,19 +2,9 @@
 
 set -e
 
-confirmAction () {
-  local ASK="$1"
-  local ACTION="$2"
+THIS_DIR="$(dirname "$(realpath "$0")")"
 
-  while true; do
-    read -p "==> $ASK (y/N) ? " CONFIRM
-    case "$CONFIRM" in
-      [Yy]* ) eval "$ACTION"; break;;
-      [Nn]* ) break;;
-      * ) echo "Please answer yes or no.";;
-    esac
-  done
-}
+. "$THIS_DIR/utilities.sh"
 
 echo "==> Setup started."
 
@@ -59,7 +49,6 @@ if [ ! -d "/Applications/GitHub Desktop.app" ]; then
 fi
 
 # Install Postgres.app
-# TODO: install into SHELL psql etc...
 if [ ! -d "/Applications/Postgres.app" ]; then
   # Versions
   POSTGRES_APP_VERSION="Postgres-2.5.6-14"
@@ -91,11 +80,9 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 # Install ASDF
-# TODO: install erlang & elixir & ruby
 if [ ! -f "/opt/homebrew/bin/asdf" ]; then
   INSTALL_ASDF="brew install asdf"
   confirmAction "Install ASDF?" "$INSTALL_ASDF"
-  echo ". /opt/homebrew/opt/asdf/libexec/asdf.sh" > "~/.zshrc"
 fi
 
 # Install Docker Desktop
@@ -128,6 +115,10 @@ if [ ! -d "/Applications/zoom.us.app" ]; then
   confirmAction "Install Zoom?" "$INSTALL_ZOOM"
 fi
 
-# Install heroku-cli
+# Install Nix
+if [ ! -d "/nix/var/nix" ]; then
+  INSTALL_NIX="sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon"
+  confirmAction "Install Nix?" "$INSTALL_NIX"
+fi
 
 echo "==> Setup finished!"
