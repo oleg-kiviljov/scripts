@@ -12,7 +12,7 @@ echo "==> Setup started."
 if [ ! -f "/opt/homebrew/bin/brew" ]; then
   ZPROFILE_PATH="/Users/$USER/.zprofile"
   INSTALL_HOMEBREW='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-  confirmAction "Install Homebrew?" "$INSTALL_HOMEBREW"
+  confirmAction "Install Homebrew" "$INSTALL_HOMEBREW"
   # TODO: must move this to confirmAction!
   echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$ZPROFILE_PATH"
   . "$ZPROFILE_PATH"
@@ -21,13 +21,13 @@ fi
 # Install git
 if [ ! -f "/opt/homebrew/bin/git" ]; then
   INSTALL_GIT="brew install git"
-  confirmAction "Install git?" "$INSTALL_GIT"
+  confirmAction "Install Git" "$INSTALL_GIT"
 fi
 
 # Install VSCode
 if [ ! -d "/Applications/Visual Studio Code.app" ]; then
   INSTALL_VSCODE="brew install --cask visual-studio-code"
-  confirmAction "Install VSCode?" "$INSTALL_VSCODE"
+  confirmAction "Install VSCode" "$INSTALL_VSCODE"
 fi
 
 # Install iTerm2
@@ -39,13 +39,13 @@ fi
 # Install Google Chrome
 if [ ! -d "/Applications/Google Chrome.app" ]; then
   INSTALL_GOOGLE_CHROME="brew install --cask google-chrome"
-  confirmAction "Install Google Chrome?" "$INSTALL_GOOGLE_CHROME"
+  confirmAction "Install Google Chrome" "$INSTALL_GOOGLE_CHROME"
 fi
 
 # Install Github Desktop
 if [ ! -d "/Applications/GitHub Desktop.app" ]; then
   INSTALL_GITHUB_DESKTOP="brew install --cask github"
-  confirmAction "Install Github Desktop?" "$INSTALL_GITHUB_DESKTOP"
+  confirmAction "Install Github Desktop" "$INSTALL_GITHUB_DESKTOP"
 fi
 
 # Install Postgres.app
@@ -64,37 +64,37 @@ if [ ! -d "/Applications/Postgres.app" ]; then
 
   # Install
   INSTALL_POSTGRES_APP="$DOWNLOAD_POSTGRES_APP_DMG && $MOUNT_POSTGRES_APP_DMG && $COPY_POSTGRES_APP_TO_APPLICATIONS && $UNMOUNT_POSTGRES_APP_DMG && $REMOVE_POSTGRES_APP_DMG" 
-  confirmAction "Install Postgres.app?" "$INSTALL_POSTGRES_APP"
+  confirmAction "Install Postgres.app" "$INSTALL_POSTGRES_APP"
 fi
 
 # Install Postico
 if [ ! -d "/Applications/Postico.app" ]; then
   INSTALL_POSTICO="brew install --cask postico"
-  confirmAction "Install Postico?" "$INSTALL_POSTICO"
+  confirmAction "Install Postico" "$INSTALL_POSTICO"
 fi
 
 # Install OhMyZsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
   INSTALL_OHMYZSH='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  confirmAction "Install OhMyZsh?" "$INSTALL_OHMYZSH"
+  confirmAction "Install OhMyZsh" "$INSTALL_OHMYZSH"
 fi
 
-# Install ASDF
+# Install asdf
 if [ ! -f "/opt/homebrew/bin/asdf" ]; then
   INSTALL_ASDF="brew install asdf"
-  confirmAction "Install ASDF?" "$INSTALL_ASDF"
+  confirmAction "Install Asdf" "$INSTALL_ASDF"
 fi
 
 # Install Docker Desktop
 if [ ! -d "/Applications/Docker.app" ]; then
   INSTALL_DOCKER_DESKTOP="brew install --cask docker"
-  confirmAction "Install Docker Desktop?" "$INSTALL_DOCKER_DESKTOP"
+  confirmAction "Install Docker Desktop" "$INSTALL_DOCKER_DESKTOP"
 fi
 
 # Install f.lux
 if [ ! -d "/Applications/Flux.app" ]; then
   INSTALL_FLUX="brew install --cask flux"
-  confirmAction "Install f.lux?" "$INSTALL_FLUX"
+  confirmAction "Install F.lux?" "$INSTALL_FLUX"
 fi
 
 # Install Telegram
@@ -119,6 +119,18 @@ fi
 if [ ! -d "/nix/var/nix" ]; then
   INSTALL_NIX="sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon"
   confirmAction "Install Nix?" "$INSTALL_NIX"
+fi
+
+# Install Minikube
+if [ ! -f "/opt/homebrew/bin/minikube" ]; then
+  INSTALL_MINIKUBE="brew install minikube"
+  confirmAction "Install Minikube?" "$INSTALL_MINIKUBE"
+fi
+
+# Install kubectl
+if [ ! -f "/usr/local/bin/kubectl" ]; then
+  INSTALL_KUBECTL="brew install kubectl"
+  confirmAction "Install kubectl?" "$INSTALL_KUBECTL"
 fi
 
 echo "==> Setup finished!"
