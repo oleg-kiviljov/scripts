@@ -10,11 +10,9 @@ echo "==> Setup started."
 
 # Install Homebrew
 if [ ! -f "/opt/homebrew/bin/brew" ]; then
-  ZPROFILE_PATH="/Users/$USER/.zprofile"
   INSTALL_HOMEBREW='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-  confirmAction "Install Homebrew" "$INSTALL_HOMEBREW"
-  # TODO: must move this to confirmAction!
-  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$ZPROFILE_PATH"
+  SETUP_HOMEBREW="echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $ZPROFILE_PATH"
+  confirmAction "Install Homebrew" "$INSTALL_HOMEBREW && $SETUP_HOMEBREW"
   . "$ZPROFILE_PATH"
 fi
 
@@ -94,43 +92,49 @@ fi
 # Install f.lux
 if [ ! -d "/Applications/Flux.app" ]; then
   INSTALL_FLUX="brew install --cask flux"
-  confirmAction "Install F.lux?" "$INSTALL_FLUX"
+  confirmAction "Install F.lux" "$INSTALL_FLUX"
 fi
 
 # Install Telegram
 if [ ! -d "/Applications/Telegram.app" ]; then
   INSTALL_TELEGRAM="brew install --cask telegram"
-  confirmAction "Install Telegram?" "$INSTALL_TELEGRAM"
+  confirmAction "Install Telegram" "$INSTALL_TELEGRAM"
 fi
 
 # Install Slack
 if [ ! -d "/Applications/Slack.app" ]; then
   INSTALL_SLACK="brew install --cask slack"
-  confirmAction "Install Slack?" "$INSTALL_SLACK"
+  confirmAction "Install Slack" "$INSTALL_SLACK"
 fi
 
 # Install Zoom
 if [ ! -d "/Applications/zoom.us.app" ]; then
   INSTALL_ZOOM="brew install --cask zoom"
-  confirmAction "Install Zoom?" "$INSTALL_ZOOM"
+  confirmAction "Install Zoom" "$INSTALL_ZOOM"
 fi
 
 # Install Nix
 if [ ! -d "/nix/var/nix" ]; then
   INSTALL_NIX="sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon"
-  confirmAction "Install Nix?" "$INSTALL_NIX"
+  confirmAction "Install Nix" "$INSTALL_NIX"
 fi
 
 # Install Minikube
 if [ ! -f "/opt/homebrew/bin/minikube" ]; then
   INSTALL_MINIKUBE="brew install minikube"
-  confirmAction "Install Minikube?" "$INSTALL_MINIKUBE"
+  confirmAction "Install Minikube" "$INSTALL_MINIKUBE"
 fi
 
 # Install kubectl
 if [ ! -f "/usr/local/bin/kubectl" ]; then
   INSTALL_KUBECTL="brew install kubectl"
-  confirmAction "Install kubectl?" "$INSTALL_KUBECTL"
+  confirmAction "Install kubectl" "$INSTALL_KUBECTL"
+fi
+
+# Install Heroku CLI
+if [ ! -f "/opt/homebrew/bin/heroku" ]; then
+  INSTALL_HEROKU_CLI="brew tap heroku/brew && brew install heroku"
+  confirmAction "Install Heroku CLI" "$INSTALL_HEROKU_CLI"
 fi
 
 echo "==> Setup finished!"

@@ -2,6 +2,8 @@
 
 set -e
 
+THIS_DIR="$(dirname "$(realpath "$0")")"
+
 . "$THIS_DIR/utilities.sh"
 
 if [ ! -f "$HOME/.ssh/id_rsa" ]; then

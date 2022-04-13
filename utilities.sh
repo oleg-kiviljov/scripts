@@ -3,6 +3,7 @@
 set -e
 
 ZSHRC_PATH="$HOME/.zshrc"
+ZPROFILE_PATH="$HOME/.zprofile"
 
 confirmAction () {
   local ASK="$1"
