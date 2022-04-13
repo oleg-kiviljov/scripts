@@ -137,4 +137,22 @@ if [ ! -f "/opt/homebrew/bin/heroku" ]; then
   confirmAction "Install Heroku CLI" "$INSTALL_HEROKU_CLI"
 fi
 
+# Install AWS CLI
+if [ ! -f "/opt/homebrew/bin/aws" ]; then
+  INSTALL_AWS_CLI="brew install awscli"
+  confirmAction "Install AWS CLI" "$INSTALL_AWS_CLI"
+fi
+
+# Install eksctl
+if [ ! -f "/opt/homebrew/bin/eksctl" ]; then
+  INSTALL_EKSCTL="brew tap weaveworks/tap && brew install weaveworks/tap/eksctl"
+  confirmAction "Install eksctl" "$INSTALL_EKSCTL"
+fi
+
+# Install doctl
+if [ ! -f "/opt/homebrew/bin/doctl" ]; then
+  INSTALL_DOCTL="brew install doctl"
+  confirmAction "Install doctl" "$INSTALL_DOCTL"
+fi
+
 echo "==> Setup finished!"
