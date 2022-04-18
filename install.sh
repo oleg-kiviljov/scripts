@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -e
 
@@ -113,16 +113,16 @@ if [ ! -d "/Applications/zoom.us.app" ]; then
   confirmAction "Install Zoom" "$INSTALL_ZOOM"
 fi
 
-# Install Nix
+# Install nix
 if [ ! -d "/nix/var/nix" ]; then
   INSTALL_NIX="sh <(curl -L https://nixos.org/nix/install) --darwin-use-unencrypted-nix-store-volume --daemon"
-  confirmAction "Install Nix" "$INSTALL_NIX"
+  confirmAction "Install nix" "$INSTALL_NIX"
 fi
 
-# Install Minikube
+# Install minikube
 if [ ! -f "/opt/homebrew/bin/minikube" ]; then
   INSTALL_MINIKUBE="brew install minikube"
-  confirmAction "Install Minikube" "$INSTALL_MINIKUBE"
+  confirmAction "Install minikube" "$INSTALL_MINIKUBE"
 fi
 
 # Install kubectl

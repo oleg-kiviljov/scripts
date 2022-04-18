@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -e
 
@@ -10,11 +10,12 @@ confirmAction () {
   local ACTION="$2"
 
   while true; do
-    read -p "==> $ASK (y/N) ? " CONFIRM
-    case "$CONFIRM" in
-      [Yy]* ) eval "$ACTION"; break;;
-      [Nn]* ) break;;
-      * ) echo "Please answer yes or no.";;
+    printf "==> $ASK (y/N) ?"
+    read yn
+    case $yn in
+        [Yy]* ) eval "$ACTION"; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
     esac
   done
 }

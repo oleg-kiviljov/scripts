@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -e
 
 THIS_DIR="$(dirname "$(realpath "$0")")"
-ASDF_DIR="$HOME/.asdf"
-ASDF_PLUGINS_DIR="$ASDF_DIR/plugins"
-ASDF_INSTALLS_DIR="$ASDF_DIR/installs"
+ASDF_HOME_DIR="$HOME/.asdf"
+ASDF_PLUGINS_DIR="$ASDF_HOME_DIR/plugins"
+ASDF_INSTALLS_DIR="$ASDF_HOME_DIR/installs"
 ASDF_SH="/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 . "$THIS_DIR/utilities.sh"
@@ -60,6 +60,17 @@ if [ ! -d "$ASDF_INSTALLS_DIR/ruby" ]; then
   RUBY_VERSION="3.1.2"
   INSTALL_RUBY="asdf install ruby $RUBY_VERSION && asdf global ruby $RUBY_VERSION"
   confirmAction "Install ruby $RUBY_VERSION?" "$INSTALL_RUBY"
+fi
+
+if [ ! -d "$ASDF_PLUGINS_DIR/haskell" ]; then
+  INSTALL_HASKELL_PLUGIN="asdf plugin-add haskell https://github.com/vic/asdf-haskell.git"
+  confirmAction "Install haskell plugin for asdf?" "$INSTALL_HASKELL_PLUGIN"
+fi
+
+if [ ! -d "$ASDF_INSTALLS_DIR/haskell" ]; then
+  HASKELL_VERSION="8.10.7"
+  INSTALL_HASKELL="asdf install haskell $HASKELL_VERSION && asdf global haskell $HASKELL_VERSION"
+  confirmAction "Install haskell $HASKELL_VERSION?" "$INSTALL_HASKELL"
 fi
 
 echo "==> Asdf setup finished!"
