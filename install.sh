@@ -155,4 +155,22 @@ if [ ! -f "/opt/homebrew/bin/doctl" ]; then
   confirmAction "Install doctl" "$INSTALL_DOCTL"
 fi
 
+# Install bitcoind
+if [ ! -f "/opt/homebrew/bin/bitcoind" ]; then
+  INSTALL_BITCOIND="brew install bitcoin"
+  confirmAction "Install bitcoind" "$INSTALL_BITCOIND"
+fi
+
+# Install jq
+if [ ! -f "/opt/homebrew/bin/jq" ]; then
+  INSTALL_JQ="brew install jq"
+  confirmAction "Install jq" "$INSTALL_JQ"
+fi
+
+# Install Spotify
+if [ ! -d "/Applications/Spotify.app" ]; then
+  INSTALL_SPOTIFY="brew install --cask spotify"
+  confirmAction "Install Spotify" "$INSTALL_SPOTIFY"
+fi
+
 echo "==> Setup finished!"
